@@ -1,0 +1,42 @@
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrap {
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+.form {
+  width: 100vw;
+  height: 30vh;
+}
+.bunch {
+  width: 100vw;
+  height: 50vh;
+}
+.remainder {
+  width: 100vw;
+  height: 20vh;
+}
+
+#loading {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  opacity: 70%;
+  text-align: center;
+}
+
+#img_loading {
+  width: 200px;
+  height: 200px;
+}
