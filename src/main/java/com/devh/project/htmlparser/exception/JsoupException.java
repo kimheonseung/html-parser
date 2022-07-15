@@ -14,7 +14,9 @@ package com.devh.project.htmlparser.exception;
  * </pre>
  */
 public class JsoupException extends Exception {
-    public JsoupException(String message) {
+	private static final long serialVersionUID = -1278172690593491649L;
+
+	public JsoupException(String message) {
         super(message);
     }
 }

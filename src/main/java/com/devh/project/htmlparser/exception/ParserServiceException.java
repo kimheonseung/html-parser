@@ -14,7 +14,9 @@ package com.devh.project.htmlparser.exception;
  * </pre>
  */
 public class ParserServiceException extends Exception {
-    public ParserServiceException(String message) {
+	private static final long serialVersionUID = 8755953035801853440L;
+
+	public ParserServiceException(String message) {
         super(message);
     }
 }
