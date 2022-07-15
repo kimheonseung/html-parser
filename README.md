@@ -78,6 +78,8 @@
 * UI에서 요청한 값에 대한 최종 반환 결과를 확인하는 테스트
 ---
 ### 7. 빌드 및 구동
+* 아래 과정을 한방에 실행시켜주는 쉘 스크립트 파일
+[script.sh](https://github.com/kimheonseung/html-parser/blob/master/script.sh)
 ```shell
 # 1. git clone
 $ git clone https://kimheonseung@github.com/kimheonseung/html-parser.git ./html-parser
@@ -117,6 +119,7 @@ $ java -jar html-parser-v1.jar
 # 7. UI
 http://localhost:port
 ```
+
 ---
 ### 8. 시연 화면
 
