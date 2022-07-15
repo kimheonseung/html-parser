@@ -45,7 +45,7 @@
 ---
 ### 5. 기능 설계
 #### HTML 구조 정리
-[JsoupRepository](https://github.com/kimheonseung/html-parser/blob/master/src/main/java/com/devh/project/htmlparser/repository/.xml)
+[JsoupRepository](https://github.com/kimheonseung/html-parser/blob/master/src/main/java/com/devh/project/htmlparser/repository/JsoupRepository.java)
 * HTML 구조를 다루는 Jsoup 라이브러리 이용하여 다음 처리를 수행한다.
     * URL을 통해 HTML 구조를 반환받아 Docktype을 제거
     * 대소문자를 구분하는 Parser 이용
