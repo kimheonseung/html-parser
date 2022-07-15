@@ -1,12 +1,18 @@
 package com.devh.project.htmlparser.repository;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.DocumentType;
+import org.jsoup.nodes.Node;
+import org.jsoup.parser.ParseSettings;
+import org.jsoup.parser.Parser;
+import org.springframework.stereotype.Component;
+
 import com.devh.project.htmlparser.constant.Type;
 import com.devh.project.htmlparser.exception.JsoupException;
 import com.devh.project.htmlparser.util.ExceptionUtils;
+
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.springframework.stereotype.Component;
 
 /**
  * <pre>
@@ -72,14 +78,18 @@ public class JsoupRepository {
      */
     public String findRawStringByUrlAndType(String url, Type type) throws JsoupException {
         Document document = this.findDocumentByUrl(url);
-
+        document.childNodes()
+	        .stream()
+	        .filter(node -> node instanceof DocumentType)
+	        .findFirst()
+	        .ifPresent(Node::remove);
         String rawString = null;
         switch (type) {
             case HTML:
-                rawString = document.html().replaceAll(regex, "");
+                rawString = document.parser(Parser.htmlParser().settings(new ParseSettings(true, true))).html().replaceAll(regex, "");
                 break;
             case TEXT:
-                rawString = document.text().replaceAll(regex, "");
+                rawString = document.parser(Parser.htmlParser().settings(new ParseSettings(true, true))).text().replaceAll(regex, "");
                 break;
         }
 
