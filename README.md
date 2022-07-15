@@ -79,7 +79,11 @@
 ---
 ### 7. 빌드 및 구동
 * 아래 과정을 한방에 실행시켜주는 쉘 스크립트 파일
+
 [script.sh](https://github.com/kimheonseung/html-parser/blob/master/script.sh)
+  
+>
+> application.yml 서버 구동 기본 포트는 8888로 설정되어있음
 ```shell
 # 1. git clone
 $ git clone https://kimheonseung@github.com/kimheonseung/html-parser.git ./html-parser
@@ -93,9 +97,6 @@ drwxrwxr-x  8 hskim hskim 4096  7월 15 22:38 html-parser
 # 2. gradle change mod
 $ cd html-parser
 $ chmod +x gradlew
-
-# !! application.yml 포트가 기본 8888으로 설정되어있음. 
-# !! 테스트 및 빌드시 수정이 필요할 수 있음
 
 # 3. gradle test (skip if you want)
 $ ./gradlew clean test -i
