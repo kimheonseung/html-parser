@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -31,6 +32,9 @@ public class ParserServiceTests {
     @Autowired
     private ParserService parserService;
 
+    @Value("${server.port}")
+    private int port;
+
     @BeforeEach
     public void before() {
         Mockito.reset(jsoupRepository);
@@ -43,7 +47,7 @@ public class ParserServiceTests {
         @DisplayName("특정 url, 'HTML 태그 제외' 옵션을 선택한 경우 - 문자열을 Mocking")
         public void parseWithMock() throws JsoupException, ParserServiceException {
             /* given */
-            final String givenUrl = "http://localhost:8080";
+            final String givenUrl = "http://localhost:"+port;
             final Type givenType = Type.TEXT;
             final int givenBunch = 5;
             final String givenRawString = "A2ors3144aaAbdD10";
@@ -68,7 +72,7 @@ public class ParserServiceTests {
         @DisplayName("특정 url, '전체' 옵션을 선택한 경우 - 현 웹서버로부터 test.html 가공된 문자열 반환")
         public void parseWithTestHTML() throws JsoupException, ParserServiceException {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.HTML;
             final int givenBunch = 5;
             final ParserRequestVO givenParserRequestVO = new ParserRequestVO();
@@ -108,7 +112,7 @@ public class ParserServiceTests {
         @DisplayName("특정 url, 'HTML 태그 제외' 옵션을 선택한 경우 - 현 웹서버로부터 test.html 가공된 문자열 반환")
         public void parseWithTestTEXT() throws JsoupException, ParserServiceException {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.TEXT;
             final int givenBunch = 5;
             final ParserRequestVO givenParserRequestVO = new ParserRequestVO();

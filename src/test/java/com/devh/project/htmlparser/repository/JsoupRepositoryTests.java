@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
@@ -31,6 +32,9 @@ public class JsoupRepositoryTests {
     @Autowired
     private JsoupRepository jsoupRepository;
 
+    @Value("${server.port}")
+    private int port;
+
     @Nested
     @DisplayName("Jsoup 라이브러리 테스트")
     class JsoupLibrary {
@@ -41,7 +45,7 @@ public class JsoupRepositoryTests {
             @DisplayName("JsoupRepository private 메소드 로직 체크 - '전체' 옵션")
             public void getTestHtml() throws IOException {
                 /* given */
-                final String givenUrl = "http://localhost:8080/test";
+                final String givenUrl = "http://localhost:"+port+"/test";
                 /* when */
                 Document document = Jsoup.connect(givenUrl).get();
                 document.childNodes()
@@ -68,7 +72,7 @@ public class JsoupRepositoryTests {
             @DisplayName("JsoupRepository private 메소드 로직 체크 - 'HTML 태그 제외' 옵션")
             public void getTestText() throws IOException {
                 /* given */
-                final String givenUrl = "http://localhost:8080/test";
+                final String givenUrl = "http://localhost:"+port+"/test";
                 /* when */
                 Document document = Jsoup.connect(givenUrl).get();
                 document.childNodes()
@@ -104,7 +108,7 @@ public class JsoupRepositoryTests {
         @DisplayName("특정 url, '전체' 옵션을 선택한 경우 반환되는 문자열 테스트")
         public void findRawStringByUrlAndTypeHTML() throws JsoupException {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.HTML;
             /* then */
             assertDoesNotThrow(() -> jsoupRepository.findRawStringByUrlAndType(givenUrl, givenType));
@@ -116,7 +120,7 @@ public class JsoupRepositoryTests {
         @DisplayName("특정 url, 'HTML 태그 제외' 옵션을 선택한 경우 반환되는 문자열 테스트")
         public void findRawStringByUrlAndTypeTEXT() throws JsoupException {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.TEXT;
             /* then */
             assertDoesNotThrow(() -> jsoupRepository.findRawStringByUrlAndType(givenUrl, givenType));

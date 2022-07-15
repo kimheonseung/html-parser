@@ -18,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -52,6 +53,9 @@ public class ParserControllerTests {
     @SpyBean
     private JsoupRepository jsoupRepository;
 
+    @Value("${server.port}")
+    private int port;
+
     @BeforeEach
     public void before() {
         Mockito.reset(parserService);
@@ -69,7 +73,7 @@ public class ParserControllerTests {
         @DisplayName("특정 url, 'HTML 태그 제외' 옵션 선택한 경우")
         public void parseTEXT() throws Exception {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.TEXT;
             final int givenBunch = 5;
             final ParserRequestVO parserRequestVO = new ParserRequestVO();
@@ -111,7 +115,7 @@ public class ParserControllerTests {
         @DisplayName("특정 url, '전체' 옵션 선택한 경우")
         public void parseHTML() throws Exception {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.HTML;
             final int givenBunch = 5;
             final ParserRequestVO parserRequestVO = new ParserRequestVO();
@@ -197,7 +201,7 @@ public class ParserControllerTests {
         @DisplayName("파싱 도중 예외")
         public void parsingException() throws Exception {
             /* given */
-            final String givenUrl = "http://localhost:8080/test";
+            final String givenUrl = "http://localhost:"+port+"/test";
             final Type givenType = Type.HTML;
             final int givenBunch = 5;
             final ParserRequestVO parserRequestVO = new ParserRequestVO();
