@@ -92,7 +92,7 @@ drwxrwxr-x  8 hskim hskim 4096  7월 15 22:38 html-parser
 $ cd html-parser
 $ chmod +x gradlew
 
-# !! application.yml 포트가 기본 8080으로 설정되어있음. 
+# !! application.yml 포트가 기본 8888으로 설정되어있음. 
 # !! 테스트 및 빌드시 수정이 필요할 수 있음
 
 # 3. gradle test (skip if you want)
