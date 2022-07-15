@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class JsoupRepository {
-    private final String regex = "[^0-9a-zA-Z]";
 
     /**
      * <pre>
@@ -78,18 +77,24 @@ public class JsoupRepository {
      */
     public String findRawStringByUrlAndType(String url, Type type) throws JsoupException {
         Document document = this.findDocumentByUrl(url);
+        /* DOCTYPE 제거 */
         document.childNodes()
 	        .stream()
 	        .filter(node -> node instanceof DocumentType)
 	        .findFirst()
 	        .ifPresent(Node::remove);
+        
+        /* html 파서. case sensitive를 고려하여 true 옵션 설정 */
+        final Parser parser = Parser.htmlParser().settings(new ParseSettings(true, true));
+        
         String rawString = null;
+        String regex = "[^0-9a-zA-Z]";
         switch (type) {
             case HTML:
-                rawString = document.parser(Parser.htmlParser().settings(new ParseSettings(true, true))).html().replaceAll(regex, "");
+                rawString = document.parser(parser).html().replaceAll(regex, "");
                 break;
             case TEXT:
-                rawString = document.parser(Parser.htmlParser().settings(new ParseSettings(true, true))).text().replaceAll(regex, "");
+                rawString = document.parser(parser).text().replaceAll(regex, "");
                 break;
         }
 
