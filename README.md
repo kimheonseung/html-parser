@@ -80,9 +80,9 @@
 ### 7. 빌드 및 구동
 ```shell
 # 1. git clone
-git clone https://kimheonseung@github.com/kimheonseung/html-parser.git ./html-parser
-
+$ git clone https://kimheonseung@github.com/kimheonseung/html-parser.git ./html-parser
 $ ls -al
+
 total 12
 drwxrwxr-x  3 hskim hskim 4096  7월 15 22:38 .
 drwxr-xr-x 32 hskim hskim 4096  7월 15 22:38 ..
@@ -104,6 +104,7 @@ $ ./gradlew clean build -i
 # 5. check JAR
 $ cd build/libs/
 $ ls -al
+
 total 17736
 drwxrwxr-x 2 hskim hskim     4096  7월 15 22:44 .
 drwxrwxr-x 9 hskim hskim     4096  7월 15 22:44 ..
@@ -111,10 +112,10 @@ drwxrwxr-x 9 hskim hskim     4096  7월 15 22:44 ..
 -rw-rw-r-- 1 hskim hskim    47115  7월 15 22:44 html-parser-v1-plain.jar
 
 # 6. start server (foreground)
-java -jar html-parser-v1.jar
+$ java -jar html-parser-v1.jar
 
 # 7. UI
-http://localhost:8080
+http://localhost:port
 ```
 ---
 ### 8. 시연 화면
