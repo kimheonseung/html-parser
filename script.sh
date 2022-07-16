@@ -1,3 +1,4 @@
+#! /bin/sh
 rm -rf html-parser &&
 git clone https://kimheonseung@github.com/kimheonseung/html-parser.git ./html-parser &&
 cd html-parser &&
