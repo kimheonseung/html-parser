@@ -1,18 +1,16 @@
 package com.devh.project.htmlparser.repository;
 
-import org.jsoup.Jsoup;
+import com.devh.project.htmlparser.constant.Type;
+import com.devh.project.htmlparser.exception.JsoupException;
+import com.devh.project.htmlparser.util.JsoupUtils;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.DocumentType;
 import org.jsoup.nodes.Node;
 import org.jsoup.parser.ParseSettings;
 import org.jsoup.parser.Parser;
 import org.springframework.stereotype.Component;
-
-import com.devh.project.htmlparser.constant.Type;
-import com.devh.project.htmlparser.exception.JsoupException;
-import com.devh.project.htmlparser.util.ExceptionUtils;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * <pre>
@@ -28,34 +26,10 @@ import lombok.extern.slf4j.Slf4j;
  * </pre>
  */
 @Component
+@RequiredArgsConstructor
 @Slf4j
 public class JsoupRepository {
-
-    /**
-     * <pre>
-     * Description
-     *     url을 Document 객체로 반환
-     * ===============================================
-     * Parameters
-     *     String url
-     * Returns
-     *     Document
-     * Throws
-     *     JsoupException
-     * ===============================================
-     *
-     * Author : HeonSeung Kim
-     * Date   : 2022. 7. 14.
-     * </pre>
-     */
-    private Document findDocumentByUrl(String url) throws JsoupException {
-        try {
-            return Jsoup.connect(url).get();
-        } catch (Exception e) {
-            log.error(ExceptionUtils.stackTraceToString(e));
-            throw new JsoupException(e.getMessage());
-        }
-    }
+    private final JsoupUtils jsoupUtils;
 
     /**
      * <pre>
@@ -76,7 +50,7 @@ public class JsoupRepository {
      * </pre>
      */
     public String findRawStringByUrlAndType(String url, Type type) throws JsoupException {
-        Document document = this.findDocumentByUrl(url);
+        Document document = jsoupUtils.findDocumentByUrl(url);
         /* DOCTYPE 제거 */
         document.childNodes()
 	        .stream()

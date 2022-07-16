@@ -67,9 +67,12 @@
 > 테스트 수행을 위해 test.html을 별도로 생성함
 > 
 > 해당 HTML을 기준으로 각 기능을 확인하는 테스트 코드를 작성함
+> 
+[JsoupUtilsTests](https://github.com/kimheonseung/html-parser/blob/master/src/test/java/com/devh/project/htmlparser/util/JsoupUtilsTests.java)
+* Jsoup 기능 테스트
 
 [JsoupRepositoryTests](https://github.com/kimheonseung/html-parser/blob/master/src/test/java/com/devh/project/htmlparser/repository/JsoupRepositoryTests.java)
-* Jsoup 기능 단위 테스트와 HTML 구조를 정리하여 반환하는 기능 테스트  
+* HTML 구조를 정리하여 반환하는 기능 테스트  
 
 [ParserServiceTests](https://github.com/kimheonseung/html-parser/blob/master/src/test/java/com/devh/project/htmlparser/service/ParserServiceTests.java)
 * 정리된 HTML 구조를 정렬하고 묶음과 나머지를 연산하는 기능 테스트
